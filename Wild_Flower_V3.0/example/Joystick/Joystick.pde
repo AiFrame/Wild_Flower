@@ -1,7 +1,7 @@
 /* Copyright (C) 2016 by Kaisavx <721462533@qq.com> */
 /**
-   @file Joystick.cpp
-   @brief Various architecture definitions Joystick
+   @file Rocker.cpp
+   @brief Various architecture definitions Rocker
 */
 /*
    Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
 #define LOOP_DELAY 50 //ms/t
 
 enum BTN_t{
-  BTN_Joystick = S1,
+  BTN_ROCKER = S1,
   BTN1 = S2,
   BTN2 = S3,
   BTN3 = S6,
@@ -54,13 +54,13 @@ enum BTN_t{
   BTN9 = S16,
 };
 
-enum Joystick_t{
-  Joystick_X = AD1,
-  Joystick_Y = AD0,
+enum ROCKER_t{
+  ROCKER_X = AD1,
+  ROCKER_Y = AD0,
 };
 
 Button_t btns[]={//declare buttons 
-  {BTN_Joystick , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
+  {BTN_ROCKER , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
 };
 
 BtnGroup btnGroup(btns,ARRAY_LEN(btns));// declare buttons manager
@@ -71,8 +71,8 @@ void setup(){
   
   btnGroup.init();//buttons manager init
   
-  pinMode(Joystick_X,INPUT_ANALOG);
-  pinMode(Joystick_Y,INPUT_ANALOG);
+  pinMode(ROCKER_X,INPUT_ANALOG);
+  pinMode(ROCKER_Y,INPUT_ANALOG);
   
   //timer1 config
   Timer1.pause();
@@ -83,7 +83,6 @@ void setup(){
   Timer1.refresh();
   Timer1.resume();
   
-  
 }
 
 
@@ -92,8 +91,8 @@ void loop(){
   btnGroup.btnsRelease();
   int x=0,y=0;
   
-  x=analogRead(Joystick_X);
-  y=analogRead(Joystick_Y);
+  x=analogRead(ROCKER_X);
+  y=analogRead(ROCKER_Y);
   
   SerialUSB.print("x:");
   SerialUSB.print(x);
@@ -111,8 +110,8 @@ void Timer1_Interrupt(){
 
 void btnsPress(Button_t*btn){// press process function
   switch(btn->id){
-   case BTN_Joystick:
-   SerialUSB.println("BTN Joystick click!");
+   case BTN_ROCKER:
+   SerialUSB.println("BTN ROCKER click!");
    break;
    case BTN1:
    SerialUSB.println("BTN1 click!");
@@ -148,8 +147,8 @@ void btnsPress(Button_t*btn){// press process function
 void btnsRelease(Button_t*btn){// press release function
   
     switch(btn->id){
-     case BTN_Joystick:
-     SerialUSB.println("BTN Joystick release!");
+     case BTN_ROCKER:
+     SerialUSB.println("BTN ROCKER release!");
      break;
      case BTN1:
      SerialUSB.println("BTN1 release!");

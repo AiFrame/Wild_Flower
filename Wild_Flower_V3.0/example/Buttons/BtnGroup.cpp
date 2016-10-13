@@ -39,7 +39,9 @@ void BtnGroup::init(){
   for(int i=0;i<size;i++){
     btn=&btnHead[i];
     pinMode(btn->id,INPUT_PULLUP);
-    attachInterrupt(btn->id,btn->handler,(ExtIntTriggerMode)btn->intMode);
+    if(btn->handler!=NULL){
+      attachInterrupt(btn->id,btn->handler,(ExtIntTriggerMode)btn->intMode);
+    }
   }
 }
   

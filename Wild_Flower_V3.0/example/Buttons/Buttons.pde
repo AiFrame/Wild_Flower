@@ -52,6 +52,15 @@ enum BTN_t{
 
 Button_t btns[]={ //declare buttons 
   {BTN1 , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
+  {BTN2 , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
+  {BTN3 , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
+  {BTN4 , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
+  {BTN5 , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
+  {BTN6 , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
+  {BTN7 , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
+  {BTN8 , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
+  {BTN9 , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
+  {BTN_ROCKER , CHANGE , HIGH , btnsPress , btnsRelease , NULL,0,-1},
 };
 
 BtnGroup btnGroup(btns,ARRAY_LEN(btns));// declare buttons manager

@@ -65,7 +65,7 @@ void send(uint8_t id,uint8_t*datas,uint8_t dataLen){//give the id and datas to p
     
     max485_1.write(sDatas,n);
     SerialUSB.println("Send Datas:");
-    for(int i=0;i<ARRAY_LEN(sDatas);i++){
+    for(int i=0;i<n;i++){
       sendHex(sDatas[i]);
     }
     SerialUSB.println();
@@ -77,17 +77,16 @@ void setup(){
   SerialUSB.begin();//SerialUSB begin
   max485_1.begin(1000000);//max485 begin with 1M baud
 }
+
 void loop(){
   uint8_t sData[]={0x1};//cmd data 0x1 is get joint's status
   uint8_t rData[100];
   int rIndex=0;
   
-  
-  
   send(0x1,sData,ARRAY_LEN(sData));//packet and send the protocol to joint with id 0x1
   for(int i=0;i<5000;i++){
-    if(max485_1.available()){
-      rData[rIndex++];
+    while(max485_1.available()){
+      rData[rIndex++]=max485_1.read();
     }
   }
   SerialUSB.println("Receive Datas:");//receive Datas print to USB
